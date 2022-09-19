@@ -1,0 +1,23 @@
+//menuTabStyle
+
+
+:host ::ng-deep .menuTabStyle.p-tabmenu{
+
+
+  .p-tabmenu-nav{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  }
+  .p-menuitem-text{
+    color: darkcyan;
+  }
+  .p-menuitem-icon{
+    color: darkcyan;
+  }
+  .p-tabmenuitem:nth-child(3){
+    margin-right: 100px;
+
+  }
+}
+

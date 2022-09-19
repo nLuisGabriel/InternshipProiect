@@ -1,0 +1,130 @@
+<div class="remeber">
+  <p-card styleClass="infoCard">
+    <h5>Remember!</h5>
+    <h6>After each change, you will be redirected to login and you must log in again!</h6>
+    <h6>Remember the password requirements!</h6>
+    <h6>Username length must be over 4 characters!</h6>
+
+  </p-card>
+</div>
+
+<div class="containe">
+<div>
+
+  <div class="forms-contet">
+
+    <form>
+      <div class="updateUserForm">
+        <h3>User Info/Update</h3>
+        <span  class="p-float-label">
+    <h6>Creation date - {{creationDate!}}</h6>
+
+</span>
+        <span class="p-float-label">
+    <h6>Username: - {{this.userFormDatabase!.username!}}</h6>
+      <button (click)="editUserUsername()" pButton type="button" label="Change your username" class="p-button-help"></button>
+</span>
+        <span class="p-float-label">
+    <h6>Email: - {{this.userFormDatabase!.email!}}</h6>
+      <button (click)="editUserEmail()" pButton type="button" label="Change your email" class="p-button-help"></button>
+
+</span>
+
+        <button  (click)="editUserPassword()" pButton type="button" label="Change your password"></button>
+        <button  (click)="deleteUser()" pButton type="button" label="Delete your account" class="p-button-danger"></button>
+      </div>
+    </form>
+
+
+
+
+
+
+    <form [formGroup]="EmailForm" *ngIf="this.editEmailClicked" class="changeEmailForm" (ngSubmit)="submitEmailChanges()">
+      <h4 class="mail-title">Change Email Form</h4>
+      <span class="p-float-label email-field">
+    <h6>Mail</h6>
+    <input formControlName="email"  styleClass="emailInputs" id="mail" type="email" pInputText>
+</span>
+      <span class="p-float-label email-field">
+      <h6>Confirm Password</h6>
+    <input formControlName="emailPass"  styleClass="emailInputs" id="password" type="password" pInputText>
+</span>
+      <div class="emailButtons">
+        <button (click)="hiddeEmailForm()" pButton type="button" label="Cancel" class="p-button-secondary"></button>
+        <button [disabled]="EmailForm.invalid"  pButton type="submit" label="Update email" class="p-button-success"></button>
+
+      </div>
+    </form>
+
+
+
+
+
+
+    <form [formGroup]="UserForm"  (ngSubmit)="submitUsernameChanges()" *ngIf="editUsernameClicker" class="changeEmailForm">
+      <h4 class="mail-title">Change Username Form</h4>
+      <span class="p-float-label email-field">
+    <h6>Username</h6>
+    <input formControlName="username" styleClass="emailInputs" id="changeUsername" type="text" pInputText>
+</span>
+      <span class="p-float-label email-field">
+      <h6>Confirm Password</h6>
+    <input formControlName="pass" styleClass="emailInputs" id="passwordUsername" type="password" pInputText>
+</span>
+      <div class="emailButtons">
+        <button (click)="hiddeUsenameForm()" pButton type="button" label="Cancel" class="p-button-secondary"></button>
+        <button [disabled]="UserForm.invalid" pButton type="submit" label="Update username" class="p-button-success"></button>
+
+      </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+    <form [formGroup]="PasswordForm" (ngSubmit)="submitPasswordChanges()"  *ngIf="this.editPasswordClicked" class="changeEmailForm">
+      <h4 class="mail-title">Change Password Form</h4>
+      <span class="p-float-label email-field">
+    <h6>New Password</h6>
+    <input formControlName="newpass" styleClass="emailInputs" id="newpass" type="password" pInputText>
+</span>
+      <span class="p-float-label email-field">
+      <h6>Old Password</h6>
+    <input formControlName="oldpass" styleClass="emailInputs" id="olspass" type="password" pInputText>
+</span>
+      <div class="emailButtons">
+        <button (click)="hiddePasswordForm()" pButton type="button" label="Cancel" class="p-button-secondary"></button>
+        <button [disabled]="PasswordForm.invalid" pButton type="submit" label="Update password" class="p-button-success"></button>
+
+      </div>
+    </form>
+
+    <div *ngIf="deleteUserClicked" class="deleteAccount">
+      <h5> Are you sure you want to delete this account? </h5>
+      <div class="deleteButtons">
+        <button (click)="hiddeDeleteQ()" pButton type="button" label="Cancel" class="p-button-help"></button>
+        <button (click)="deleteUserAccount()" pButton type="button" label="Delete my account" class="p-button-danger"></button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+<div *ngIf="errorMessage!=''" class="error-message">
+  <p-message styleClass="errorBox" severity="error" text="{{errorMessage}}}"></p-message>
+</div>

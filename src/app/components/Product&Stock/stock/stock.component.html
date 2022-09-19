@@ -1,0 +1,53 @@
+<div class="full-container">
+  <div class="product-container">
+    <p-card header="Product Information" subheader="Details" [style]="{width: '360px'}" styleClass="shadow-2">
+      <ng-template pTemplate="header">
+        <img alt="Card" src="./assets/images/medicine.png">
+      </ng-template>
+      <p>PZN: {{productReceived.pzn}}</p>
+      <p>Package Size: {{productReceived.packageSize}}</p>
+      <p>Strength: {{productReceived.strength}}</p>
+      <p>Unit: {{productReceived.unit}}</p>
+      <p>Supplier: {{productReceived.supplier}}</p>
+      <p>Product Name: {{productReceived.productName}}</p>
+      <ng-template pTemplate="footer">
+        <p-button [disabled]="showForm" (click)="goBackToTable()" label="Go back to product table" icon="pi pi-check"></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+  <div class="stock-container">
+    <p-card header="Stock Information" subheader="Details" [style]="{width: '360px'}" styleClass="shadow-2">
+      <ng-template pTemplate="header">
+        <img alt="Card" src="./assets/images/repo.jpg">
+      </ng-template>
+      <p>ID: {{stockReceived.id!}}</p>
+      <p>Price: {{stockReceived.price!}}</p>
+      <p>Quantity: {{stockReceived.quantity!}}</p>
+      <ng-template pTemplate="footer">
+        <p-button [disabled]="showForm" (click)="showUpForm()" label="Edit stock" icon="pi pi-check"></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div *ngIf="showForm" class="form-div">
+    <form [formGroup]="stockForm" class-="form-container">
+      <h5>Modify Stock</h5>
+      <div>
+        <h6>Price</h6>
+        <p-inputNumber formControlName="price" [min]="0" [max]="10000" [format]="false" [maxFractionDigits]="2" styleClass="formInput" ></p-inputNumber>
+      </div>
+      <div>
+        <h6>Quantity</h6>
+        <p-inputNumber formControlName="quantity" [min]="0" [max]="10000" [format]="false" styleClass="formInput" ></p-inputNumber>
+      </div>
+      <div class="stock-buttons">
+        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+        <button  pRipple (click)="cancelForm()" pButton type="button" label="Go back" class="p-button-info, "></button>
+        <button  [disabled]="stockForm.invalid" class="confirm-button p-button-success" (click)="confirm()" pButton icon="pi pi-check" label="Confirm"></button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<p-toast position="top-left" key="tl"></p-toast>
+

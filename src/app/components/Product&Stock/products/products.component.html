@@ -1,0 +1,112 @@
+<p-toast position="bottom-center" key="tl"></p-toast>
+<p-toast position="bottom-center" key="tlr"></p-toast>
+<div class="tabeldiv">
+
+  <p-table tableStyleClass="table-class" #dt1 [value]="products" styleClass="p-datatable-striped p-datatable-gridlines p-datatable-sm"
+           [globalFilterFields]="['pzn','supplier','productName','strength','packageSize','unit']"  [rowHover]="true"
+           [(selection)]="selectedProducts" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" dataKey="id"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Products List
+             </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="pzn" >PZN  <p-sortIcon field="pzn"></p-sortIcon> </th>
+        <th pSortableColumn="supplier">Supplier <p-sortIcon field="supplier"></p-sortIcon></th>
+        <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
+        <th pSortableColumn="strength">Strength <p-sortIcon field="strength"></p-sortIcon></th>
+        <th pSortableColumn="packageSize">Package size <p-sortIcon field="packageSize"></p-sortIcon></th>
+        <th pSortableColumn="unit">Unit <p-sortIcon field="unit"></p-sortIcon></th>
+        <th>Options </th>
+
+      <tr>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'pzn', 'contains')" placeholder="Search by pzn" class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'supplier', 'contains')" placeholder="Search by supplier" class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'productName', 'contains')" placeholder="Search by productName" class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'strength', 'contains')" placeholder="Search by strength" class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'packageSize', 'contains')" placeholder="Search by packageSize" class="p-column-filter">
+        </th>
+        <th>
+          <input pInputText type="text" (input)="dt1.filter($any($event.target).value, 'unit', 'contains')" placeholder="Search by unit" class="p-column-filter">
+        </th>
+        <th>
+          <button pButton pRipple label="New entry" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+        </th>
+
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.pzn}}</td>
+        <td>{{product.supplier}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.strength}}</td>
+        <td>{{product.packageSize}}</td>
+        <td>{{product.unit}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-database" class="p-button-rounded p-button-secondary" (click)="viewStock(product)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="field">
+      <h5>Product PZN: {{product.pzn}}</h5>
+    </div>
+
+    <div class="field">
+      <label for="supplier">Supplier</label>
+      <input [maxlength]="100" type="text" pInputText id="supplier" [(ngModel)]="product.supplier" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.supplier">Supplier is required.</small>
+    </div>
+
+    <div class="field">
+      <label for="productName">Product Name</label>
+      <input [maxlength]="100" type="text" pInputText id="productName" [(ngModel)]="product.productName" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.productName">ProductName is required.</small>
+    </div>
+
+    <div class="field">
+      <label for="strength">Strength</label>
+      <input [maxlength]="100" type="text" pInputText id="strength" [(ngModel)]="product.strength" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.strength">Strength is required.</small>
+    </div>
+
+    <div class="field">
+      <label for="packageSize">Package Size</label>
+      <input [maxlength]="20" type="text" pInputText id="packageSize" [(ngModel)]="product.packageSize" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.packageSize">PackageSize is required.</small>
+    </div>
+
+    <div class="field">
+      <label for="unit">Unit</label>
+      <input [maxlength]="2" type="text" pInputText id="unit" [(ngModel)]="product.unit" required autofocus />
+      <small class="p-error" *ngIf="submitted && !product.unit">unit is required.</small>
+    </div>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button [disabled]="!product.supplier || !product.productName || !product.strength || !product.packageSize || !product.unit" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog  [style]="{width: '450px'}"></p-confirmDialog>

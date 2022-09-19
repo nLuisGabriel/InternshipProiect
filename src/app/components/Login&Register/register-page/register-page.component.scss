@@ -1,0 +1,129 @@
+.register-title{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 120px;
+  h4{
+    color: white;
+    font-family: 'Helvetica Neue',
+    sans-serif; font-size: 46px;
+    font-weight: 100;
+    line-height: 50px;
+    letter-spacing: 1px;
+    padding: 0 0 40px;
+  }
+}
+
+
+.register-container{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 50px;
+
+}
+
+.RegisterAndInfo{
+  display: flex;
+  margin-top: 15px;
+  width: auto;
+}
+
+.login-container{
+
+  width: 600px;
+  border-top-width: 10px;
+  border-radius: 3px;
+  margin-bottom: 200px;
+  grid-column: 1;
+  background-color: azure;
+  border: 1rem solid;
+  border-radius: 17px;
+  border-color: azure;
+
+}
+form {
+
+  flex-direction: column;
+  text-align:center;
+}
+button{
+  margin-top: 10px;
+  display: flex;
+}
+label { font-size: 17px; display: flex; font-family: Ebrima}
+input{
+  width: 290px;
+  display: flex;
+  margin-top: 6px;
+}
+.error{
+  margin-top: 20px;
+  color: red;
+}
+.info{
+  width: 300px;
+  border-style: groove;
+  border-color: cornflowerblue;
+}
+:host ::ng-deep .card.p-card{
+  .p-card-header{
+    margin-top: 5px;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 20px;
+    width: auto;
+    text-align: center;
+    color: azure;
+  }
+}
+:host ::ng-deep .card.p-card{
+  margin-left: 20px;
+  height: auto;
+  padding: 0.1rem;
+}
+:host ::ng-deep .card.p-card{
+  height: 100%;
+
+  .p-card-content{
+    h4{
+      text-align: center;
+      font-family: Ebrima;
+      font-size: 20px;
+      padding: 5px;
+    }
+    padding: 0rem;
+  }
+}
+.buttons{
+  display:flex;
+  justify-content: space-between;
+}
+
+:host ::ng-deep .errorCase.p-card{
+  height: auto;
+  padding: 0.1rem;
+}
+.errorsRegister{
+  margin-top: 15px;
+  width: auto;
+  justify-content: center;
+}
+:host ::ng-deep .cardError.p-card{
+  margin-top: 10px;
+  word-wrap: break-word;
+  .p-card-content{
+    color: red;
+    font-family: Ebrima
+  }
+}
+:host ::ng-deep .cardSucces.p-card{
+  margin-top: 10px;
+  word-wrap: break-word;
+  .p-card-content{
+    color: Green;
+    font-family: Ebrima
+  }
+}
+

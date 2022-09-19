@@ -1,0 +1,73 @@
+<div class="register-title">
+  <h4 >Register Account</h4>
+</div>
+
+
+<div class="register-container">
+  <div class="login-container">
+    <div class="RegisterAndInfo">
+      <form [formGroup]="registerForm" (ngSubmit)="Register()">
+        <label for="mail">Email</label>
+        <span class="p-float-label">
+    <input id="mail" type="email" formControlName="mail" pInputText>
+</span>
+
+        <label for="username">Username</label>
+        <span class="p-float-label">
+    <input id="username" type="text" formControlName="username" pInputText>
+</span>
+
+        <label for="password">Password</label>
+        <span class="p-float-label">
+    <input id="password" type="password" formControlName="password" pInputText >
+
+
+</span>
+
+        <label for="password2">Verify Password</label>
+        <span class="p-float-label">
+    <input id="password2" type="password" formControlName="password2" pInputText >
+
+
+</span>
+        <div class="buttons">
+          <button [disabled]="this.registerForm.invalid" pButton type="submit" label="Register" ></button>
+          <button (click)="toLoginPage()" pButton type="button" label="To login page" ></button>
+        </div>
+
+      </form>
+      <div>
+        <p-card styleClass="card">
+          <ng-template pTemplate="header">
+            <h3>Password must have:</h3>
+          </ng-template>
+          <h4>* One digit!
+            <i *ngIf="containDigits" class="pi pi-check"></i>
+          </h4>
+          <h4>* One big letter!
+            <i *ngIf="containCapitalLetter" class="pi pi-check"></i>
+          </h4>
+          <h4 >* One small letter!
+            <i *ngIf="containSmallLetter" class="pi pi-check"></i>
+          </h4>
+          <h4 >* One symbol!
+            <i *ngIf="containSymbol"  class="pi pi-check"></i></h4>
+          <h4 >* Size: min=5 and max=20
+            <i *ngIf="correctSize" class="pi pi-check"></i></h4>
+        </p-card>
+      </div>
+    </div>
+
+
+    <div *ngIf="errorMessage!=''" class="errorsRegister">
+      <p-card styleClass="cardError">
+        {{errorMessage}}
+      </p-card>
+    </div>
+    <div *ngIf="succesMessage!=''" class="successRegister">
+      <p-card styleClass="cardSucces">
+        {{succesMessage}}
+      </p-card>
+    </div>
+  </div>
+</div>

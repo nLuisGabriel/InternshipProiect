@@ -1,0 +1,94 @@
+.containe{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.forms-contet{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.updateUserForm{
+  width: 300px;
+  flex-direction: column;
+  text-align: center;
+  background-color: azure;
+  justify-content: center;
+  border: 1rem solid;
+  border-radius: 6px;
+  border-color: azure;
+  justify-content: center;
+
+
+
+  button{
+    margin-top: 10px;
+
+
+  }
+  h6{
+    margin-top: 10px;
+  }
+}
+.changeEmailForm{
+  height: 360px;
+  background-color: azure;
+  margin-left: 20px;
+  width: 300px;
+  border: 1rem solid;
+  border-radius: 6px;
+  border-color: azure;
+  .mail-title{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+
+  }
+  .email-field{
+    margin-top: 20px;
+  }
+  ::ng-deep  .p-inputtext{
+    width: 268px;
+  }
+}
+.emailButtons{
+ margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+::ng-deep .infoCard.p-card{
+  margin-bottom: 20px;
+  width: fit-content;
+  margin-top: 20px;
+}
+
+.deleteAccount{
+  background-color: azure;
+  border: 1rem solid;
+  border-color: azure;
+  border-radius: 6px;
+  margin-left: 20px;
+  overflow:hidden;
+  height:1%;
+  .deleteButtons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+.error-message{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.remeber{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+

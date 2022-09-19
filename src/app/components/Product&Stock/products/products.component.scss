@@ -1,0 +1,13 @@
+.tabeldiv{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+:host{
+  .table-class.p-table{
+    .p-datatable-tbody{
+      margin-top: 100px;
+    }
+  }
+}

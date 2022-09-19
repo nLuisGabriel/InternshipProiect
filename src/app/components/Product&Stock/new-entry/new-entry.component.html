@@ -1,0 +1,100 @@
+
+<p-steps class="header-steps-entry" styleClass="header-steps" [(activeIndex)]="activeIndex" [model]="items" ></p-steps>
+<div class="product-container">
+  <div  *ngIf="!isProductPage" class="forms-container">
+    <!--  <div  *ngIf="true" *ngIf="!toStock" class="forms-container">-->
+    <h4 class="product-title-form"> New entry Product </h4>
+    <form class="product-form" [formGroup]="product_form">
+      <div class="form-field">
+        <div>
+          <h6>PZN</h6>
+          <input  [maxlength]="8" formControlName="pzn" id="pzn" type="text"  pInputText>
+        </div>
+
+      </div>
+
+      <div class="form-field" >
+        <div>
+          <h6>Supplier</h6>
+          <input formControlName="supplier" id="supplier" type="text" pInputText>
+        </div>
+      </div>
+
+
+      <div class="form-field">
+        <div>
+          <h6>Product name</h6>
+          <input formControlName="productName" id="product-name" type="text" pInputText>
+        </div>
+
+      </div>
+
+
+      <div class="form-field">
+        <div>
+          <h6>Strength</h6>
+          <input formControlName="strength" id="strength" type="text" pInputText>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <div>
+          <h6>Package Size</h6>
+          <input formControlName="packageSize" id="packageSize" type="text" pInputText>
+        </div>
+
+      </div>
+
+
+      <div class="form-field">
+        <div>
+          <h6>Unit</h6>
+          <input formControlName="unit" id="unit" type="text" pInputText>
+        </div>
+
+      </div>
+
+      <div class="divButton">
+        <button pRipple pButton [disabled]="!this.product_form.get('pzn')!.value" (click)="checkPznAvailability()" type="button" label="Check PZN availability" class="p-button-raised p-button-text p-button-plain"></button>
+        <button  pRipple (click)="saveProduct()" [disabled]="availability || product_form.invalid" class="to-stock-button p-button-raised p-button-success p-button-text" pButton type="button" label="Next to stock form"></button>
+      </div>
+
+    </form>
+    <div class="message" *ngIf="message!=''">
+      {{message}}
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="isProductPage" class="associated-stock">
+ <div class="product-panel">
+   <div class="title-panel">
+     <h4>Product Details</h4>
+   </div>
+   <div class="info-panel">
+     <h5>PZN: {{currentProduct.pzn}}</h5>
+     <h5>Supplier: {{currentProduct.supplier}}</h5>
+     <h5>Product Name: {{currentProduct.productName}}</h5>
+     <h5>Strength: {{currentProduct.strength}}</h5>
+     <h5>Package Size: {{currentProduct.packageSize}}</h5>
+     <h5>Unit: {{currentProduct.unit}}</h5>
+   </div>
+ </div>
+  <form [formGroup]="stockForm"  (ngSubmit)="createStockAndProduct()" class="stock-form">
+    <h5>Stock Details</h5>
+      <h6>Price</h6>
+      <p-inputNumber styleClass="input-style" formControlName="price" [min]="0" [max]="10000" [format]="false" [maxFractionDigits]="2"  ></p-inputNumber>
+
+
+      <h6>Quantity</h6>
+      <p-inputNumber styleClass="input-style" formControlName="quantity" [min]="0" [max]="10000" [format]="false" ></p-inputNumber>
+
+  <div class="stock-buttons">
+    <button (click)="goBackToProduct()" pButton type="button" label="Go back" class="p-button-info, "></button>
+    <button [disabled]="stockForm.invalid" pButton type="submit" label="Confirm" class="p-button-success"></button>
+  </div>
+  </form>
+</div>
+
